@@ -141,7 +141,7 @@ if($SpeedtestObj.ISP -ne '') {
     $SpeedtestObj.Add('DateTime',$CurrentDateTime)
     $SpeedtestObj.Add('HealthStatus',$SpeedtestHealth)
 
-    $SpeedTestSorted = $SpeedtestObj | Select-Object 'DateTime','DownloadSyncRate','UploadSyncRate','DownloadSpeed','UploadSpeed','PacketLoss','Jitter','Latency','ExternalIP','InternalIP','ResultsURL','UsedServer','HealthStatus'
+    $SpeedTestSorted = New-Object PSObject -property $SpeedtestObj | Select-Object DateTime,DownloadSyncRate,UploadSyncRate,DownloadSpeed,UploadSpeed,PacketLoss,Jitter,Latency,ExternalIP,InternalIP,ResultsURL,UsedServer,ISP,HealthStatus
     write-host "Speed Test Resulted in $($SpeedtestObj.DownloadSpeed) Mb/s Download and $($SpeedtestObj.UploadSpeed) Mb/s Upload" -ForegroundColor Green
 
     if (Test-Path $OutputFile) {
